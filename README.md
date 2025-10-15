@@ -27,3 +27,31 @@ Built with a clean UI, responsive layout, and RESTful backend integration.
 ---
 
 ## 📁 Project Structure
+MyPortfolio/
+├── client/ # React app
+│ ├── src/ # Components, pages, assets
+│ ├── public/ # Static files
+│ └── vite.config.js
+├── server/ # Express API
+│ ├── routes/ # API routes (auth, contact, etc.)
+│ ├── models/ # Mongoose schemas
+│ ├── controllers/ # Logic
+│ └── server.js
+└── README.md
+
+Visit http://localhost:5173 for frontend and http://localhost:5000 for backend.
+
+💡 Features
+Fully responsive UI
+Contact form with backend API
+Project showcase with dynamic data
+Authentication (optional)
+Deployed on GitHub Pages / Render
+
+🧠 Future Plans
+Add admin dashboard
+Integrate email notifications
+Add dark mode support
+
+👩‍💻 Author
+Rojina Saberi
