@@ -1,0 +1,296 @@
+/* ===== Midterm CSS (React-ready) =====
+   Rojina Saberi - adapted for React + Bootstrap
+   ------------------------------------------------ */
+
+/* ---- Base / Globals ---- */
+:root {
+  --header-h: 80px;
+  --accent: bisque;       /* navbar + buttons */
+  --text: #222;
+  --muted: #555;
+  --bg: #fff;
+  --bg-soft: #f7f7f7;
+  --bg-alt: #fafafa;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  /* Clear space for fixed header */
+  padding-top: var(--header-h);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #1a1a1a;
+  margin: 0 0 .5rem 0;
+}
+
+/* ---- Header / Navbar ---- */
+#header {
+  background-color: var(--accent) !important;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.logo img { max-height: 40px; }
+
+.navbar { width: 100%; padding: 0 0; }
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  position: relative;
+}
+
+.navbar li { position: relative; }
+
+.navbar a,
+.nav .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333 !important;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.navbar a:hover,
+.nav .nav-link:hover { color: #000 !important; }
+
+/* Dropdown (kept simple) */
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(127,137,161,.25);
+  transition: .3s;
+}
+.navbar .dropdown ul li { min-width: 200px; }
+.navbar .dropdown ul a { padding: 10px 20px; font-weight: 500; }
+.navbar .dropdown:hover > ul { opacity: 1; top: 100%; visibility: visible; }
+
+/* ---- Hero / Home ---- */
+.home {
+  /* Full window height minus fixed header */
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;         /* vertical center */
+  background: var(--bg-alt);   /* light section */
+  color: var(--text);
+  padding: 40px 0;
+}
+
+.home .hero-content,
+.hero-row {
+  display: flex;
+  align-items: center;         /* text + photo aligned */
+  gap: 32px;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 800;
+  margin-bottom: .25rem;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.list-social {
+  display: flex;
+  gap: 16px;
+  font-size: 22px;
+  margin-top: 6px;
+}
+
+.list-social a {
+  color: #333 !important;
+  text-decoration: none;
+}
+.list-social a:hover { color: #000 !important; }
+
+/* Profile photo (RIGHT or LEFT per your JSX) */
+.hero-photo {
+  max-width: 220px;   /* adjust for size */
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+/* ---- About Section ---- */
+#about,
+.aboutsection {
+  width: 100%;
+  height: auto;
+  background: var(--bg-soft);
+  padding: 80px 0;
+}
+
+/* If you use an image in About elsewhere */
+.about-img {
+  width: 100%;
+  margin-top: 20px;
+  height: auto;
+  opacity: 1;               /* was 0.5; make visible */
+}
+.about-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.about-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  text-align: left;
+  margin-bottom: 12px;
+  color: #2d2d2d;
+}
+
+.about-text {
+  max-width: 80%;
+  margin-bottom: 16px;
+  text-align: left;
+  color: var(--muted);
+}
+
+/* Nice centered card (used in current JSX) */
+.about-card {
+  max-width: 900px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,.05);
+}
+
+/* ---- Buttons ---- */
+.btn-visitpage {
+  background-color: var(--accent);
+  border: none;
+  color: #000;        /* fixed from 'color: b' */
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: transform .05s ease, background .2s ease;
+}
+.btn-visitpage:hover { background-color: #e6cfa5; }
+.btn-visitpage:active { transform: scale(.98); }
+
+.about-description .btn-visitpage { margin-top: 30px; }
+
+/* ---- Skills / Services ---- */
+.Servicesection {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.Servicesection .h4-heading { text-align: center; }
+
+.Servicesection .p-heading {
+  margin-bottom: 28px;
+  text-align: center;        /* centered looks better */
+  color: var(--muted);
+}
+
+.Servicesection .text-box {
+  margin-bottom: 20px;
+  padding: 28px 16px;
+  border: 3px solid beige;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+  height: 100%;
+}
+
+/* ---- Projects ---- */
+.Projectsection { background: var(--bg-alt); padding: 80px 0; }
+
+#Project .card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  font-family: "Playfair Display", serif;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+#Project .card-header {
+  background: var(--accent);
+  font-weight: 700;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
+/* ---- Contact / Form ---- */
+#form { background: #fff; padding: 80px 0; }
+
+#form * { box-sizing: border-box; }
+
+#form input[type=text],
+#form select,
+#form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+#form label {
+  padding: 8px 0;
+  display: inline-block;
+  font-weight: 500;
+}
+
+#form input[type=submit]:hover { background-color: #7cd480; }
+
+#form .container { border-radius: 5px; padding: 20px; }
+
+/* Keep your old float layout, but Bootstrap form classes already handle layout; these can be removed if using .row + .col-* */
+#form .subject-form { float: left; width: 25%; margin-top: 6px; }
+#form .item-form    { float: left; width: 75%; margin-top: 6px; }
+
+/* ---- Small screens tweaks ---- */
+@media (max-width: 576px) {
+  .list-social { justify-content: center; }
+  .about-text, .about-heading { max-width: 100%; text-align: center; }
+  #form .subject-form,
+  #form .item-form { float: none; width: 100%; }
+}

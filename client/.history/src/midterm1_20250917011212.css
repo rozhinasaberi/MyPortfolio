@@ -1,0 +1,102 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #fff;                 /* switch text to white for contrast */
+    background: red;             /* 🔴 full page red background */
+    line-height: 1.6;
+    padding-top: var(--header-h);
+  }
+  
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #1c1c1c, #121212);
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #bbbbbb;
+  }
+  
+  /* ===== ABOUT SECTION ===== */
+  .about-section {
+    background-color: transparent; /* remove white block */
+    color: #f0f0f0;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-section p {
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    font-size: 1.05rem;
+    color: #d6d6d6;
+  }
+  
+  /* Resume Button */
+  .resume-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #ff9800; /* accent color */
+    color: #121212;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .resume-button:hover {
+    background-color: #ffa733;
+  }
+  
+  /* ===== SKILLS SECTION ===== */
+  .skills-section {
+    background-color: #1c1c1c;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .skills-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .skills-section p {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: #cccccc;
+  }
+  
+  /* ===== FOOTER ===== */
+  footer {
+    background-color: #0d0d0d;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  footer a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  

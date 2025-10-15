@@ -1,0 +1,251 @@
+/*Midterm*/
+/*  css file 
+/*Rojina Saberi*/
+/*217354051*/
+#header {
+
+    background-color: bisque
+}
+
+
+.logo img {
+    max-height: 40px;
+}
+
+.navbar {
+    padding: 20px;
+
+}
+
+.navbar :hover {
+    color: #7c6038;
+}
+
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    position: relative;
+}
+
+.navbar li {
+    position: relative;
+}
+
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 30px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7e7d7d;
+    transition: 0.6s;
+}
+
+
+.navbar .dropdown ul {
+    display: block;
+    position: absolute;
+    left: 30px;
+    top: calc(100% + 30px);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+}
+
+.navbar .dropdown ul li {
+    min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+    padding: 10px 20px;
+    font-weight: 400;
+}
+
+.navbar .dropdown ul a i {
+    font-size: 12px;
+}
+
+.navbar .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+
+
+.home-content {
+    height: 700px;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+}
+
+.home-content p {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.list-social {
+
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+.home-content .experiences .p .h6 {
+
+    color: #24262a;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: "Playfair Display", serif;
+
+}
+
+.btn {
+
+    margin-bottom: 20px;
+}
+
+
+#about {
+    width: 100%;
+    height: auto;
+    background: #f7f7f7;
+    padding-top: 120px;
+}
+
+
+
+.about-img {
+    width: 100%;
+    margin-top: 40px;
+    margin-left: 30px;
+    height: 400px;
+    opacity: 0.5;
+
+
+}
+
+.about-heading {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    text-align: left;
+}
+
+.about-text {
+    max-width: 80%;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+
+
+.Servicesection {
+    padding-top: 124px;
+    padding-bottom: 84px;
+}
+
+.Servicesection .h4-heading {
+
+    text-align: center;
+}
+
+.Servicesection .p-heading {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.Servicesection .text-box {
+    margin-bottom: 10px;
+
+    padding: 56px 16px 34px 16px;
+    border: 3px solid beige;
+}
+
+.btn-visitpage {
+    background-color: bisque;
+    border: none;
+    color: b;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.about-description .btn-visitpage {
+    margin-top: 60px;
+}
+
+#Project .card {
+
+    border: none;
+    border-radius: 20%;
+    font-family: "Playfair Display", serif;
+}
+
+#form * {
+    box-sizing: border-box;
+}
+
+#form input[type=text],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#form label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
+#form input[type=submit]:hover {
+    background-color: #7cd480;
+}
+
+#form .container {
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#form .subject-form {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+#form .item-form {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}

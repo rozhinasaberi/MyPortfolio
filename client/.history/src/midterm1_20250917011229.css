@@ -1,0 +1,174 @@
+/* ===== Vars & base ===== */
+:root { --header-h: 80px; --bisque: #f4d4b1; }
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #222;
+  background: #fff;            /* overall page is light */
+  line-height: 1.6;
+  padding-top: var(--header-h); /* clear the fixed header */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #1a1a1a;
+  margin: 0 0 .5rem 0;
+}
+
+/* ===== Navbar ===== */
+#header {
+  background: var(--bisque) !important;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.navbar { width: 100%; padding: 0; }
+.navbar .brand-text { font-weight: 700; font-size: 20px; }
+.nav a, .navbar .nav-link {
+  color: #444 !important;
+  font-weight: 600;
+  padding: .5rem 1rem;
+}
+.nav a:hover { color: #000 !important; }
+
+/* ===== Layout helpers ===== */
+.container { max-width: 1140px; }
+
+/* ===== Hero: full window, centered, LIGHT background ===== */
+.home {
+  min-height: calc(100vh - var(--header-h));  /* fill the available window */
+  display: flex;
+  align-items: center;                         /* vertical center */
+  background: #fafafa;                         /* light, not black */
+  color: #222;                                 /* dark text */
+  padding: 40px 0;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;                         /* center text + photo */
+  gap: 32px;
+}
+
+.hero-title {
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 800;
+  color: #111;
+  margin-bottom: .25rem;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.list-social a {
+  color: #333 !important;
+  font-size: 24px;
+}
+.list-social a:hover { color: #000 !important; }
+
+/* Hero photo size/placement */
+.hero-photo {
+  max-width: 220px;      /* adjust size here if needed */
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}
+
+/* ===== About: centered card with contrast ===== */
+.aboutsection {
+  background: #f7f7f7;   /* light gray section */
+  padding: 80px 0;
+}
+
+.about-card {
+  max-width: 900px;
+  background: #fff;      /* white card on gray section */
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,.05);
+  margin: 0 auto;
+}
+
+.about-heading {
+  font-size: 26px;
+  color: #2d2d2d;
+  margin-bottom: 12px;
+}
+
+.about-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* Buttons */
+.btn-visitpage {
+  background-color: var(--bisque);
+  border: none;
+  color: #000;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform .05s ease, background .2s ease;
+  text-decoration: none;
+}
+.btn-visitpage:hover { background: #eac99f; }
+.btn-visitpage:active { transform: scale(.98); }
+
+/* ===== Skills ===== */
+.Servicesection {
+  background: #fff;      /* light */
+  padding: 80px 0;
+}
+.Servicesection .h4-heading { text-align: center; margin-bottom: 8px; }
+.Servicesection .p-heading { text-align: center; margin-bottom: 28px; color: #444; }
+
+.text-box {
+  padding: 24px 16px;
+  border: 2px solid beige;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+  height: 100%;
+}
+
+/* ===== Projects ===== */
+.Projectsection {
+  background: #fafafa;   /* very light gray for separation */
+  padding: 80px 0;
+}
+.project-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+#Project .card-header {
+  background: var(--bisque);
+  font-weight: 700;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
+/* ===== Contact ===== */
+#form { background: #fff; padding: 80px 0; }
+
+/* ===== Small screens tweaks ===== */
+@media (max-width: 576px) {
+  .nav { gap: .25rem; }
+  .nav .nav-link { padding: .25rem .5rem; }
+}

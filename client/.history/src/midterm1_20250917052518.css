@@ -1,0 +1,405 @@
+/* ===========================
+   Global / Base
+   =========================== */
+   :root {
+    --header-h: 70px;
+    --accent: bisque;
+    --text: #222;
+    --muted: #555;
+    --bg: #fff;
+    --bg-soft: #f7f7f7;
+    --bg-alt: #fafafa;
+  }
+  
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  
+  body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    padding-top: var(--header-h);   /* clears fixed header */
+  }
+  
+  h1, h2, h3, h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    color: #1a1a1a;
+    margin: 0 0 .5rem 0;
+  }
+  
+  /* Container max width harmony with Bootstrap */
+  .container { max-width: 1140px; }
+  
+  /* ===========================
+     Header / Navbar
+     =========================== */
+  #header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  
+  .logo img { max-height: 40px; }
+  
+  .navbar ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    display: flex; align-items: center; gap: 18px;
+  }
+  
+  .navbar a, .nav-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444 !important;
+    transition: color .2s ease;
+  }
+  .navbar a:hover { color: #000 !important; }
+  
+  /* ===========================
+     Hero (intro) — full height
+     =========================== */
+  .home {
+    
+    display: flex;
+    min-height: 100vh;               /* fill viewport */
+    align-items: center;
+    justify-content: center;
+   
+  }
+  .home-section {
+    background: #fafafa;
+    margin-top: -100px;
+  }
+  
+  .home-section h1 {
+    font-size: 36px;
+    margin-bottom: 16px;
+    color: #222;
+  }
+  
+  .home-section .lead {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .home-section .mission {
+    font-size: 16px;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  
+  .home-section .btn-visitpage {
+    background: bisque;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: bold;
+  }
+  
+  .hero-photo {
+    max-width: 220px;       /* nice medium size */
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 0 auto 20px auto;   /* center photo + spacing below */
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  }
+  
+
+  .hero-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  .hero-subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  
+  .list-social { display: flex; gap: 14px; }
+  .list-social a {
+    font-size: 20px;
+    color: #333 !important;
+    text-decoration: none;
+  }
+  .list-social a:hover { color: #000 !important; }
+  
+ 
+ 
+  
+  /* ===========================
+     About — full height card
+     =========================== */
+  .aboutsection {
+    background: var(--bg-soft);
+    min-height: 100vh;               /* fill viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    margin-top: -140px;
+  }
+  
+  .about-container {
+    align-items: center;
+    justify-content: center;
+ 
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    padding: 40px 32px;
+    text-align: left;
+  }
+  
+  .about-container h2 {
+    font-size: clamp(18px, 2.5vw, 22px);  /* smaller heading */
+    color: #222;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .about-container p {
+    margin: 0 0 18px 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  
+ 
+  
+  /* Button */
+  .btn-visitpage {
+    display: inline-block;
+    background: var(--accent);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background .2s ease, transform .05s ease;
+  }
+  .btn-visitpage:hover { background: #e6cfa9; }
+  .btn-visitpage:active { transform: scale(.98); }
+  
+  /* ===========================
+     Skills / Services section
+     =========================== */
+  .Servicesection {
+    
+    background: #fff;
+    padding: 80px 0;
+    min-height: 100vh;               /* fill viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -80px;
+
+  }
+  .Servicesection .h4-heading {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .Servicesection .p-heading {
+    text-align: center;
+    margin-bottom: 28px;
+    color: var(--muted);
+  }
+  .text-box {
+    padding: 24px 16px;
+    border: 2px solid beige;
+    border-radius: 10px;
+    background: #fff;
+    text-align: center;
+    height: 100%;
+  }
+  
+  /* ===========================
+     Projects
+     =========================== */
+/* ===========================
+   Projects Section
+   =========================== */
+   .Projectsection {
+    padding: 80px 0;
+    background: #fafafa;
+  }
+  
+  .Projectsection .row {
+    margin: 0 -12px;         /* balance spacing */
+  }
+  
+  .Projectsection .col-lg-4,
+  .Projectsection .col-md-6 {
+    padding: 0 12px;         /* horizontal gap between cards */
+    margin-bottom: 24px;     /* vertical spacing */
+    margin-left: 25px;
+  }
+  
+  .project-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.12);
+  }
+  
+  .project-card img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .project-card .card-body {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .project-card .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .project-card .card-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+  }
+  
+  .project-card .btn-visitpage {
+    background: bisque;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background .2s ease;
+  }
+  
+  .project-card .btn-visitpage:hover {
+    background: #e6cfa9;
+  }
+  
+  
+  /* ===========================
+     Contact / Form
+     =========================== */
+ /* ===========================
+   Contact / Form
+   =========================== */
+#form {
+    background: #f7f7f7;        /* light grey to separate section */
+    padding: 80px 0;
+    min-height: 100vh;               /* fill viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -80px;
+  
+  }
+  
+  #form .container {
+    max-width: 900px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    padding:  100px;
+  }
+  #form .row {
+    display: flex;
+    flex-direction: column;   /* stack items vertically */
+    gap: 16px;                /* spacing between boxes */
+  }
+  
+  #form .item-form,
+  #form .subject-form {
+    width: 100%;
+    margin: 0;                /* remove left/right float spacing */
+  }
+  
+  #form input[type="text"],
+  #form select,
+  #form textarea {
+    width: 100%;              /* make every box full-width */
+    display: block;
+  }
+  #form h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(22px, 3vw, 32px);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  
+  #form p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  #form .form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2b2b2b;
+  }
+  
+  #form .form-control,
+  #form .form-select,
+  #form textarea {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  
+  #form .form-control:focus,
+  #form .form-select:focus,
+  #form .form-select:focus {
+    outline: none;
+    border-color: #c9a873;
+    box-shadow: 0 0 0 4px rgba(201,168,115,.15);
+  }
+  
+  #form .contact-actions {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  #form .btn-visitpage {
+    background: bisque;
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 22px;
+    transition: background .2s ease, transform .05s ease;
+  }
+  
+  #form .btn-visitpage:hover {
+    background: #e6cfa9;
+  }
+  #form .btn-visitpage:active {
+    transform: scale(.98);
+  }
+  
