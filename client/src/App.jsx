@@ -22,7 +22,7 @@ export default function App() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch("https://myportfolio-j9tp.onrender.com/services");
+        const res = await fetch("https://myportfolio-j9tp.onrender.com/api/services");
 
         if (!res.ok) throw new Error("Failed to fetch services");
         const data = await res.json();
@@ -48,7 +48,7 @@ export default function App() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://myportfolio-j9tp.onrender.com/projects")
+        const res = await fetch("https://myportfolio-j9tp.onrender.com/api/projects")
         ;
         if (!res.ok) throw new Error("Failed to fetch projects");
         const data = await res.json();
@@ -95,7 +95,7 @@ export default function App() {
 
     try {
       setContactLoading(true);
-      const res = await fetch("https://myportfolio-j9tp.onrender.com/contacts", {
+      const res = await fetch("https://myportfolio-j9tp.onrender.com/api/contacts", {
  
         method: "POST",
         headers: { "Content-Type": "application/json" },
