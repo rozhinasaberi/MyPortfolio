@@ -50,7 +50,7 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
+    console.error("xxxxx MongoDB connection error:", err.message);
 
     // Still allow server to run even if DB fails
     app.listen(PORT, () => {
