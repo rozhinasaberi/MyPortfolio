@@ -95,8 +95,7 @@ export default function App() {
 
     try {
       setContactLoading(true);
-      const res = await fetch("https://myportfolio-j9tp.onrender.com/api/contacts", {
- 
+      const res = await fetch("http://localhost:3000/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactForm),
