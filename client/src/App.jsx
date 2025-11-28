@@ -194,7 +194,8 @@ export default function App() {
               <div className="container h-100">
                 <div className="row h-100 hero-row">
                   <div className="container">
-                    <h1>Welcome to My Portfolio</h1>
+                    <h1>Welcome to My Portfolio, this website  includes continuous deployment updates!</h1>
+                    
                     <p className="lead">
                       Hi, I'm <strong>Rojina Saberi</strong>. I want to
                       contribute my abilities to a forward thinking firm that
@@ -357,6 +358,7 @@ export default function App() {
             <section id="form">
               <div className="container">
                 <h2 className="text-center mb-4">Let's be in touch!</h2>
+                
 
                 {contactStatus && (
                   <p
