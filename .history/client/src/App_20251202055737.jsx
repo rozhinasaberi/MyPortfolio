@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Signup from "./signup.jsx";
 import CustomerDashboard from "./CustomerDashboard.jsx";
-import Services from "./services.jsx";
+import Services from "./Services.jsx";
 import Projects from "./Projects.jsx";
 
 function App() {
