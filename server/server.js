@@ -1,40 +1,51 @@
-import express from "express";
-import cors from "cors";
+// server/server.js
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
+import mongoose from "mongoose";
+import app from "./express.js";
 
-import authRoutes from "./routes/authRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import serviceRoutes from "./routes/serviceRoutes.js";
-import projectRoutes from "./routes/projectRoutes.js";
+// ROUTES (make sure these filenames exist exactly)
+import authRoutes from "./routes/auth.routes.js";
+import projectRoutes from "./routes/project.routes.js";
+import qualificationRoutes from "./routes/qualification.routes.js";
+import serviceRoutes from "./routes/service.routes.js";
+import contactRoutes from "./routes/contact.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 dotenv.config();
-connectDB();
 
-const app = express();
+console.log("SERVER STARTING...");
 
-// CORS FIX FOR RENDER + NETLIFY
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+// API BASE ROUTE
+app.get("/", (_req, res) => {
+  res.send("Portfolio API is running");
+});
 
-app.use(express.json());
-
-// API ROUTES
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/services", serviceRoutes);
+// REGISTER ROUTES
+app.use("/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/qualifications", qualificationRoutes);
+app.use("/api/services", serviceRoutes);
+app.use("/api/contacts", contactRoutes);
+app.use("/api/users", userRoutes);
 
-// ROOT
-app.get("/", (req, res) =>
-  res.send("Portfolio API is running on Render!")
-);
+// PORT + MONGO
+const PORT = process.env.PORT || 3000;
+const MONGO_URI =
+  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Portfolio";
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on port ${PORT}`)
-);
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`Server listening on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
+    app.listen(PORT, () => {
+      console.log(
+        `Server listening on http://localhost:${PORT} (DB failed to connect)`
+      );
+    });
+  });
