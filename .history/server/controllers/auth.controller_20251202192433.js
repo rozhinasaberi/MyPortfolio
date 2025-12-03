@@ -1,3 +1,4 @@
+// controllers/auth.controller.js
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
@@ -6,41 +7,38 @@ export const signup = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
 
-    // 1. Check if email already exists
+    // Check if email exists
     const exists = await User.findOne({ email });
-    if (exists) {
-      return res.status(400).json({ error: "Email already exists" });
-    }
+    if (exists) return res.status(400).json({ error: "Email already exists" });
 
-    // 2. Clean phone value
+    // Clean phone value: allow null if empty
     const cleanedPhone =
       phone && phone.toString().trim() !== "" ? phone : null;
 
-    // 3. Create user
+    // Create new user
     const newUser = new User({
       name,
       email,
-      password, // plain text as you requested
+      password, // plain text (your requirement)
       phone: cleanedPhone,
-      role: "user", // ensures role is always set
     });
 
-    // Save in DB
-    const savedUser = await newUser.save();
+    await newUser.save();
 
-    // 4. Create JWT token
+    // Create token
     const token = jwt.sign(
-      { id: savedUser._id, email: savedUser.email },
+      { id: newUser._id, email: newUser.email },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
-    // 5. Return full user + token like login does
+    // Return everything frontend expects
     res.json({
-      message: "Signup successful!",
-      user: savedUser,
+      message: "User created!",
+      user: newUser,
       token,
     });
+
   } catch (err) {
     console.error("Signup Error:", err);
     res.status(500).json({ error: "Server error" });
