@@ -1,65 +1,69 @@
 import User from "../models/user.model.js";
-import jwt from "jsonwebtoken";
 
-// SIGNUP -----------------------------------------------------
+// =============================
+// SIGNUP  (plain text password)
+// =============================
 export const signup = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
 
     const exists = await User.findOne({ email });
     if (exists) {
       return res.status(400).json({ error: "Email already exists" });
     }
 
-    const cleanedPhone =
-      phone && phone.toString().trim() !== "" ? phone : null;
-
-    const newUser = new User({
+    const user = await User.create({
       name,
       email,
-      password, // plain text (your requirement)
-      phone: cleanedPhone,
+      password,   // plain text
+      phone: phone || null,
       role: "user",
     });
 
-    const savedUser = await newUser.save();
-
-    const token = jwt.sign(
-      { id: savedUser._id, email: savedUser.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
-
-    res.json({
-      message: "Signup successful!",
-      user: savedUser,
-      token,
+    return res.json({
+      message: "Signup successful",
+      user,
     });
+
   } catch (err) {
     console.error("Signup Error:", err);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 };
 
-// LOGIN ------------------------------------------------------
+// =============================
+// SIGNIN  (plain text compare)
+// =============================
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    if (!email || !password)
+      return res.status(400).json({ error: "Email and password required" });
+
     const user = await User.findOne({ email });
-    if (!user || user.password !== password) {
+
+    if (!user) {
+      console.log("User not found:", email);
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    if (user.password !== password) {
+      console.log("Password mismatch for:", email);
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
 
-    res.json({ token, user });
+    return res.json({
+      message: "Login successful",
+      user,
+    });
+
   } catch (err) {
     console.error("Login Error:", err);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 };
