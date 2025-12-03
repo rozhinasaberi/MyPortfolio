@@ -202,7 +202,7 @@ export default function App() {
                 </div>
 
                 <div>
-                  <h2>About Me</h2>
+                  <h2>Learn About Me</h2>
                   <h1 className="hero-title">Rojina Saberi</h1>
                   <p className="hero-subtitle">Software Developer & IT Analyst</p>
 
