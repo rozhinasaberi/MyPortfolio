@@ -1,4 +1,3 @@
-// client/src/signup.jsx
 import { useState } from "react";
 
 export default function Signup({ onSuccess }) {
@@ -8,7 +7,7 @@ export default function Signup({ onSuccess }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const BACKEND = "https://myportfolio-1-adrz.onrender.com";
+  const BACKEND = "https://myportfolio-1-adrz.onrender.com/api";
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ export default function Signup({ onSuccess }) {
         return;
       }
 
-      setMessage("Signup successful! 🎉");
+      setMessage("Signup successful!");
 
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -45,54 +44,18 @@ export default function Signup({ onSuccess }) {
       <h1>Create Account</h1>
 
       <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          required
-          onChange={(e) => setName(e.target.value)}
-        /><br /><br />
+        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        /><br /><br />
+        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        /><br /><br />
+        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
 
-        <input
-          type="tel"
-          placeholder="Phone (optional)"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        /><br /><br />
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone (optional)" />
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            background: "black",
-            color: "white",
-            padding: "12px",
-            borderRadius: "6px",
-          }}
-        >
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
       </form>
 
-      {message && (
-        <p style={{ marginTop: "1rem", textAlign: "center" }}>{message}</p>
-      )}
+      {message && <p>{message}</p>}
     </div>
   );
 }

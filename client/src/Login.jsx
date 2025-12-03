@@ -1,4 +1,3 @@
-// client/src/Login.jsx
 import React, { useState } from "react";
 
 export default function Login({ onSuccess, setRole }) {
@@ -6,7 +5,7 @@ export default function Login({ onSuccess, setRole }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const BACKEND = "https://myportfolio-1-adrz.onrender.com";
+  const BACKEND = "https://myportfolio-1-adrz.onrender.com/api";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +19,6 @@ export default function Login({ onSuccess, setRole }) {
       });
 
       const data = await res.json();
-      console.log("LOGIN RESPONSE:", data);
 
       if (!res.ok) {
         setMessage(data.error || "Invalid credentials");
@@ -28,25 +26,17 @@ export default function Login({ onSuccess, setRole }) {
       }
 
       const user = data.user;
-      setMessage("Login successful!");
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", data.token || "");
 
-      // Store user locally
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("token", data.token || "");
-      }
-
-      // Set role (same flow as old working code)
-      if (setRole && user?.role) {
+      if (setRole && user.role) {
         setRole(user.role);
         localStorage.setItem("role", user.role);
       }
 
-      if (onSuccess && user) {
-        onSuccess(user);
-      }
+      if (onSuccess) onSuccess(user);
     } catch (err) {
-      console.error("LOGIN ERROR:", err);
+      console.error(err);
       setMessage("Server error, please try again.");
     }
   };
@@ -62,12 +52,6 @@ export default function Login({ onSuccess, setRole }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{
-            width: "100%",
-            padding: "12px",
-            borderRadius: "6px",
-            marginBottom: "1rem",
-          }}
         />
 
         <input
@@ -76,40 +60,12 @@ export default function Login({ onSuccess, setRole }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{
-            width: "100%",
-            padding: "12px",
-            borderRadius: "6px",
-            marginBottom: "1.5rem",
-          }}
         />
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            background: "black",
-            color: "white",
-            padding: "12px",
-            borderRadius: "6px",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
 
-      {message && (
-        <p
-          style={{
-            marginTop: "1rem",
-            textAlign: "center",
-            color: message.includes("success") ? "green" : "red",
-          }}
-        >
-          {message}
-        </p>
-      )}
+      {message && <p style={{ color: "red" }}>{message}</p>}
     </div>
   );
 }
