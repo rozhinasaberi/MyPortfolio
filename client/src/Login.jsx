@@ -6,8 +6,7 @@ export default function Login({ onSuccess, setRole }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  // ⭐ IMPORTANT: Update to your actual backend URL
-  const BACKEND = "https://myportfolio-backend.onrender.com";
+  const BACKEND = "https://myportfolio-1-adrz.onrender.com";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,11 +30,13 @@ export default function Login({ onSuccess, setRole }) {
       const user = data.user;
       setMessage("Login successful!");
 
+      // Store user locally
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", data.token || "");
       }
 
+      // Set role (same flow as old working code)
       if (setRole && user?.role) {
         setRole(user.role);
         localStorage.setItem("role", user.role);

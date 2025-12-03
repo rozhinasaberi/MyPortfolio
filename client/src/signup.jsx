@@ -8,7 +8,7 @@ export default function Signup({ onSuccess }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const BACKEND = "https://myportfolio-backend.onrender.com";
+  const BACKEND = "https://myportfolio-1-adrz.onrender.com";
 
   const handleSignup = async (e) => {
     e.preventDefault();
