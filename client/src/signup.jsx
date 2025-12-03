@@ -1,3 +1,4 @@
+// client/src/signup.jsx
 import { useState } from "react";
 
 export default function Signup({ onSuccess }) {
@@ -21,21 +22,24 @@ export default function Signup({ onSuccess }) {
       });
 
       const data = await res.json();
+      console.log("SIGNUP RESPONSE:", data);
 
       if (!res.ok) {
         setMessage(data.error || "Signup failed.");
         return;
       }
 
-      setMessage("Signup successful!");
+      setMessage("Signup successful! 🎉");
 
+      // Save new user
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token || "");
         if (onSuccess) onSuccess(data.user);
       }
     } catch (err) {
-      console.error(err);
-      setMessage("Server error.");
+      console.error("SIGNUP ERROR:", err);
+      setMessage("Server error. Try again.");
     }
   };
 
@@ -44,18 +48,68 @@ export default function Signup({ onSuccess }) {
       <h1>Create Account</h1>
 
       <form onSubmit={handleSignup}>
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          required
+          style={inputStyle}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          style={inputStyle}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          required
+          style={inputStyle}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone (optional)" />
+        <input
+          type="tel"
+          placeholder="Phone (optional)"
+          value={phone}
+          style={inputStyle}
+          onChange={(e) => setPhone(e.target.value)}
+        />
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" style={btnStyle}>
+          Sign Up
+        </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && (
+        <p style={{ marginTop: "1rem", textAlign: "center" }}>{message}</p>
+      )}
     </div>
   );
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px",
+  marginBottom: "1.2rem",
+  borderRadius: "6px",
+  border: "1px solid #aaa",
+};
+
+const btnStyle = {
+  width: "100%",
+  background: "black",
+  color: "white",
+  padding: "12px",
+  borderRadius: "6px",
+  border: "none",
+  cursor: "pointer",
+  fontWeight: "600",
+};
