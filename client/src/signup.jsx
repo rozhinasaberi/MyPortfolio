@@ -1,98 +1,98 @@
-// client/src/Signup.jsx
-import React, { useState } from "react";
-import axios from "axios";
-import { API_BASE } from "./api";
+// client/src/signup.jsx
+import { useState } from "react";
 
-export default function Signup({ goLogin }) {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-  });
+export default function Signup({ onSuccess }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
 
-  const onChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const BACKEND = "https://myportfolio-backend.onrender.com";
 
-  const handleSubmit = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setMessage("");
-    setError("");
 
     try {
-      await axios.post(`${API_BASE}/api/auth/signup`, form);
-      setMessage("Account created! You can now login.");
+      const res = await fetch(`${BACKEND}/auth/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, phone }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage(data.error || "Signup failed.");
+        return;
+      }
+
+      setMessage("Signup successful! 🎉");
+
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        if (onSuccess) onSuccess(data.user);
+      }
     } catch (err) {
-      console.error("Signup error:", err.response?.data || err.message);
-      setError(
-        err.response?.data?.error || "Could not create account. Try again."
-      );
+      console.error(err);
+      setMessage("Server error.");
     }
   };
 
   return (
-    <section className="auth-section">
-      <div className="auth-card">
-        <h2>Create Account</h2>
-        <form onSubmit={handleSubmit} className="auth-form">
-          <label>
-            Name
-            <input
-              name="name"
-              value={form.name}
-              onChange={onChange}
-              required
-            />
-          </label>
+    <div style={{ padding: "3rem", maxWidth: "500px", margin: "0 auto" }}>
+      <h1>Create Account</h1>
 
-          <label>
-            Email
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={onChange}
-              required
-            />
-          </label>
+      <form onSubmit={handleSignup}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          required
+          onChange={(e) => setName(e.target.value)}
+        /><br /><br />
 
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={onChange}
-              required
-            />
-          </label>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        /><br /><br />
 
-          <label>
-            Phone (optional)
-            <input
-              name="phone"
-              value={form.phone}
-              onChange={onChange}
-            />
-          </label>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        /><br /><br />
 
-          {error && <p className="auth-error">{error}</p>}
-          {message && <p className="auth-success">{message}</p>}
+        <input
+          type="tel"
+          placeholder="Phone (optional)"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        /><br /><br />
 
-          <button type="submit" className="btn auth-btn">
-            Sign Up
-          </button>
-        </form>
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            background: "black",
+            color: "white",
+            padding: "12px",
+            borderRadius: "6px",
+          }}
+        >
+          Sign Up
+        </button>
+      </form>
 
-        <p className="auth-switch">
-          Already have an account?{" "}
-          <button type="button" onClick={goLogin} className="link-btn">
-            Sign In
-          </button>
-        </p>
-      </div>
-    </section>
+      {message && (
+        <p style={{ marginTop: "1rem", textAlign: "center" }}>{message}</p>
+      )}
+    </div>
   );
 }
