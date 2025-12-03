@@ -1,69 +1,112 @@
+// client/src/Login.jsx
 import React, { useState } from "react";
 
 export default function Login({ onSuccess, setRole }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMsg("");
+    setMessage("");
 
     try {
-      const res = await fetch(
-        "https://myportfolio-backend.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch("http://localhost:3000/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await res.json();
+      console.log("LOGIN RESPONSE:", data);
 
       if (!res.ok) {
-        setErrorMsg(data.error || "Invalid credentials");
+        setMessage(data.error || "Invalid credentials");
         return;
       }
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("role", data.user.role || "user");
+      // success
+      const user = data.user;
+      setMessage("Login successful!");
 
-      if (setRole) setRole(data.user.role || "user");
-      if (onSuccess) onSuccess(data.user);
+      // save user in localStorage (for dashboard etc.)
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+
+      // set role if parent passed setter
+      if (setRole && user && user.role) {
+        setRole(user.role);
+        localStorage.setItem("role", user.role);
+      }
+
+      // tell parent (App.jsx) login worked
+      if (onSuccess && user) {
+        onSuccess(user);
+      }
     } catch (err) {
-      setErrorMsg("Network error. Try again.");
+      console.error("LOGIN ERROR:", err);
+      setMessage("Server error, please try again.");
     }
   };
 
   return (
-    <div className="auth-card">
-      <h2>Sign In</h2>
+    <div style={{ padding: "3rem 1rem", maxWidth: "500px", margin: "0 auto" }}>
+      <h1 style={{ marginBottom: "2rem" }}>Sign In</h1>
 
-      {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
+      <form onSubmit={handleLogin}>
+        <div style={{ marginBottom: "1rem" }}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+            required
+          />
+        </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          className="form-control"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div style={{ marginBottom: "1.5rem" }}>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+            required
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="form-control"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button className="btn-visitpage" type="submit">
+        <button
+          type="submit"
+          style={{
+            background: "black",
+            color: "white",
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
           Login
         </button>
       </form>
+
+      {message && (
+        <p style={{ marginTop: "1rem", color: message.includes("success") ? "green" : "red" }}>
+          {message}
+        </p>
+      )}
     </div>
   );
 }
