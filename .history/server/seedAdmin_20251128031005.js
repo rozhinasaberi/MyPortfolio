@@ -39,7 +39,7 @@ async function seedAdmin() {
       }
     }
 
-    console.log("Done ");
+    console.log("Done ✅");
     process.exit(0);
   } catch (err) {
     console.error("Seed admin error:", err);

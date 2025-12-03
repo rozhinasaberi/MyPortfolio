@@ -1,14 +1,14 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
- 
+  /*line spacing */
   line-height: 1.5;
-
+  /*defual font*/
   font-weight: 400;
 
   color-scheme: light dark;
- 
+  /*defult text color of white transparent */
   color: rgba(255, 255, 255, 0.87);
-  
+  /*defult background dark gray */
   background-color: #242424;
 }
 /*links css */
@@ -23,10 +23,10 @@ a:hover {
 
 /*body*/
 body {
-  margin: 0; 
+  margin: 0; /*no defult margin */
   display: flex;
   place-items: center;
-  min-width: 320px; 
+  min-width: 320px; /* enosuring width of mobile devices */
   min-height: 100vh;
 }
  /*headings*/

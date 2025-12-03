@@ -339,7 +339,7 @@ export default function App() {
         }
       />
 
-     
+      {/* Optional standalone routes */}
       <Route path="/signup" element={<Signup onSuccess={handleAuthSuccess} />} />
       <Route path="/login" element={<Login onSuccess={handleAuthSuccess} setRole={setRole} />} />
     </Routes>

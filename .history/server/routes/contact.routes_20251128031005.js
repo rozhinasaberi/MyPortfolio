@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-
+// /api/contacts
 router.post("/", createContact);
 router.get("/", getContacts);
 router.get("/:id", getContactById);

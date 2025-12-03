@@ -28,7 +28,7 @@ body {
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
-  padding-top: var(--header-h); 
+  padding-top: var(--header-h); /* space for fixed header */
 }
 
 h1,
